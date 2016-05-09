@@ -26,17 +26,26 @@ public class MovieDetail extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         MovieDetails movieDetails=(MovieDetails)getIntent().getSerializableExtra("movie");
-        ((TextView)findViewById(R.id.title_textView)).setText(movieDetails.getOriginal_title());
+        TextView title=((TextView)findViewById(R.id.title_textView));
+        title.setText(movieDetails.getOriginal_title());
 
         String url=createMovieUrl(movieDetails.getPoster_path());
         Log.d(LOG_TAG,"Loading from:"+url);
-        Picasso.with(this).load(url).into((ImageView) findViewById(R.id.movie_imageView));
+        ImageView movieImage=(ImageView) findViewById(R.id.movie_imageView);
+        Picasso.with(this).load(url).into(movieImage);
         Log.v(LOG_TAG,"Done from:"+url);
 
-        ((TextView)findViewById(R.id.overview_textView)).setText(movieDetails.getOverview());
-        ((TextView)findViewById(R.id.rating_textView)).setText("("+movieDetails.getVote_average()+")");
-        ((TextView)findViewById(R.id.release_textView)).setText("Released on : "+movieDetails.getRelease_date());
+        TextView overview=((TextView)findViewById(R.id.overview_textView));
+        overview.setText(movieDetails.getOverview());
+
+        TextView rating=((TextView)findViewById(R.id.rating_textView));
+        rating.setText("("+movieDetails.getVote_average()+")");
+
+
+        TextView release=((TextView)findViewById(R.id.release_textView));
+        release.setText("Released on : "+movieDetails.getRelease_date());
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
