@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detailIntent=new Intent(getApplicationContext(),MovieDetail.class);
+                Intent detailIntent=new Intent(getApplicationContext(),MovieDetailActivity.class);
                 detailIntent.putExtra("movie",movieDetails.get(position));
                 startActivity(detailIntent);
             }

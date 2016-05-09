@@ -7,7 +7,6 @@ import android.util.Log;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.prerak.popularmovies.activity.MainActivity;
-import app.prerak.popularmovies.activity.MovieDetail;
 import app.prerak.popularmovies.bean.MovieDetails;
 
 /**

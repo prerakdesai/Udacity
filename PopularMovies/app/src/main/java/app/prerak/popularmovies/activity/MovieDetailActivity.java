@@ -2,12 +2,9 @@ package app.prerak.popularmovies.activity;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,9 +13,9 @@ import com.squareup.picasso.Picasso;
 import app.prerak.popularmovies.R;
 import app.prerak.popularmovies.bean.MovieDetails;
 
-public class MovieDetail extends AppCompatActivity {
+public class MovieDetailActivity extends AppCompatActivity {
 
-    String LOG_TAG=MovieDetail.this.getClass().toString();
+    String LOG_TAG=MovieDetailActivity.this.getClass().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
