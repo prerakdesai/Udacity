@@ -1,7 +1,10 @@
 package app.prerak.popularmovies.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -32,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FetchMovieTask fetchMovieTask = new FetchMovieTask(this);
-        fetchMovieTask.execute("popular");
+        if (isOnline()) {
+            FetchMovieTask fetchMovieTask = new FetchMovieTask(this);
+            fetchMovieTask.execute("popular");
+        }
     }
 
     @Override
@@ -65,8 +69,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sort=prefs.getString(getString(R.string.sort_key), "sorting");
         Log.d(LOG_TAG,"Sorting:"+sort);
-        FetchMovieTask fetchMovieTask = new FetchMovieTask(this);
-        fetchMovieTask.execute(sort);
+        if (isOnline()) {
+            FetchMovieTask fetchMovieTask = new FetchMovieTask(this);
+            fetchMovieTask.execute(sort);
+        }
+    }
+
+    private boolean isOnline() {
+        ConnectivityManager connectivityManager= (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+        return networkInfo!=null && networkInfo.isAvailable() && networkInfo.isConnected();
     }
 
 

@@ -120,7 +120,7 @@ public class FetchMovieTask extends AsyncTask<String, Void, List<MovieDetails>> 
         movieUrl.appendPath("3");
         movieUrl.appendPath("movie");
         movieUrl.appendPath(sort);
-        movieUrl.appendQueryParameter("api_key", "<your key>");
+        movieUrl.appendQueryParameter("api_key", "86ff578db8d26183ffbee705c78819ad");
 
         return movieUrl.build().toString();
     }
