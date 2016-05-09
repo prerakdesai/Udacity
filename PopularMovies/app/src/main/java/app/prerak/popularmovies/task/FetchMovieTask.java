@@ -51,7 +51,6 @@ public class FetchMovieTask extends AsyncTask<String, Void, List<MovieDetails>> 
             JSONObject json=new JSONObject(jsonString);
             String movies=json.getString("results");
             movieList = mapper.readValue(movies, new TypeReference<List<MovieDetails>>() { });
-            Log.v(LOG_TAG,movieList.toString());
         } catch (JsonGenerationException e) {
             Log.e(LOG_TAG,e.getMessage(),e);
         } catch (IOException e) {
