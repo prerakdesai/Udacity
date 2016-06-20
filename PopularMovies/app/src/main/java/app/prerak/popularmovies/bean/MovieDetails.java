@@ -1,5 +1,8 @@
 package app.prerak.popularmovies.bean;
 
+import android.graphics.Bitmap;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -14,7 +17,36 @@ public class MovieDetails implements Serializable{
     String poster_path;
     String vote_average;
     String release_date;
+    String id;
+    @JsonIgnore
+    byte[] posterImage;
 
+    @JsonIgnore
+    boolean favourite;
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        favourite = favourite;
+    }
+
+    public byte[] getPosterImage() {
+        return posterImage;
+    }
+
+    public void setPosterImage(byte[] posterImage) {
+        this.posterImage = posterImage;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getOverview() {
         return overview;

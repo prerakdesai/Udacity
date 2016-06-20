@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +34,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="app.prerak.popularmovies.activity.MainActivity" />
         </activity>
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".providers.MoviesProvider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
 
 </manifest>

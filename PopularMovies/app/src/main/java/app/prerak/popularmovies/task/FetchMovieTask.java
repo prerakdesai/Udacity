@@ -22,21 +22,23 @@ import java.util.List;
 
 import app.prerak.popularmovies.activity.MainActivity;
 import app.prerak.popularmovies.bean.MovieDetails;
+import app.prerak.popularmovies.fragments.MovieFragment;
+import app.prerak.popularmovies.util.HttpUtil;
 
 /**
  * Created by Prerak on 5/9/2016.
  */
 public class FetchMovieTask extends AsyncTask<String, Void, List<MovieDetails>> {
     String LOG_TAG = FetchMovieTask.this.getClass().toString();
-    MainActivity mainActivity;
+    MovieFragment mainActivity;
 
-    public FetchMovieTask(MainActivity mainActivity) {
+    public FetchMovieTask(MovieFragment mainActivity) {
         this.mainActivity = mainActivity;
     }
     @Override
     protected List<MovieDetails> doInBackground(String... params) {
         String movieUrl = createMovieUrl(params[0]);
-        String jsonString = getMovieDetails(movieUrl);
+        String jsonString = HttpUtil.getJSONResult(movieUrl);
         List<MovieDetails> movies=getMovieTitles(jsonString);
         return movies;
     }
@@ -63,54 +65,6 @@ public class FetchMovieTask extends AsyncTask<String, Void, List<MovieDetails>> 
     protected void onPostExecute(List<MovieDetails> movieDetailses) {
         super.onPostExecute(movieDetailses);
         mainActivity.refreshMovies(movieDetailses);
-    }
-
-    private String getMovieDetails(String movieUrl) {
-        HttpURLConnection urlConnection = null;
-        BufferedReader reader = null;
-
-
-        try {
-            URL url = new URL(movieUrl);
-
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
-            if (inputStream == null) {
-                // Nothing to do.
-                return null;
-            }
-            reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line + "\n");
-            }
-
-            if (buffer.length() == 0) {
-                return null;
-            }
-            String json = buffer.toString();
-            Log.d(LOG_TAG, json);
-            return json;
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Error closing stream", e);
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (final IOException e) {
-                    Log.e(LOG_TAG, "Error closing stream", e);
-                }
-            }
-        }
-        return null;
     }
 
     private String createMovieUrl(String sort) {
