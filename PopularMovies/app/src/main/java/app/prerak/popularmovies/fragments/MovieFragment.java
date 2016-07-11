@@ -1,12 +1,10 @@
 package app.prerak.popularmovies.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.prerak.popularmovies.R;
-import app.prerak.popularmovies.activity.MovieDetailActivity;
 import app.prerak.popularmovies.adapter.GridViewAdapter;
 import app.prerak.popularmovies.bean.MovieDetails;
 import app.prerak.popularmovies.providers.MoviesContract;
@@ -84,7 +81,7 @@ public class MovieFragment extends Fragment {
     }
 
     public void loadMovies() {
-            sort = getSortOption();
+        sort = getSortOption();
 
         if (!sort.equals("favourites")) {
             if (isOnline()) {
@@ -178,7 +175,6 @@ public class MovieFragment extends Fragment {
          */
         public void onItemSelected(MovieDetails movieDetails);
     }
-
 
 
     /**

@@ -14,5 +14,5 @@ import java.net.URL;
  */
 public class Constants {
 
-    public static final String KEY="86ff578db8d26183ffbee705c78819ad";
+    public static final String KEY="API KEY";
 }

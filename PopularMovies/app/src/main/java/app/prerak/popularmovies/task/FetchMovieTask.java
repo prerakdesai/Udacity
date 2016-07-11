@@ -22,6 +22,7 @@ import java.util.List;
 
 import app.prerak.popularmovies.activity.MainActivity;
 import app.prerak.popularmovies.bean.MovieDetails;
+import app.prerak.popularmovies.constants.Constants;
 import app.prerak.popularmovies.fragments.MovieFragment;
 import app.prerak.popularmovies.util.HttpUtil;
 
@@ -74,7 +75,7 @@ public class FetchMovieTask extends AsyncTask<String, Void, List<MovieDetails>> 
         movieUrl.appendPath("3");
         movieUrl.appendPath("movie");
         movieUrl.appendPath(sort);
-        movieUrl.appendQueryParameter("api_key", "86ff578db8d26183ffbee705c78819ad");
+        movieUrl.appendQueryParameter("api_key", Constants.KEY);
 
         return movieUrl.build().toString();
     }
