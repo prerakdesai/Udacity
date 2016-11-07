@@ -11,6 +11,11 @@ import java.io.IOException;
 public class Jokes {
 
     private static MyApi api=null;
+
+    public Jokes(){
+
+    }
+
     public Jokes(MyApi api){
         this.api=api;
     }
